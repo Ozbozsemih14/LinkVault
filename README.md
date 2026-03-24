@@ -26,3 +26,4 @@ Bu proje, bir backend geliştiricisinin bilmesi gereken temel ve orta seviye kon
 ```bash
 git clone [https://github.com/ozbozsemih14/LinkVault.git](https://github.com/ozbozsemih14/LinkVault.git)
 cd LinkVault
+Link Vault2
