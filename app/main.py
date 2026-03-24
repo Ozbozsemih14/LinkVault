@@ -41,3 +41,10 @@ def create_link(link: schemas.LinkCreate, db: Session = Depends(get_db)):
     db.refresh(new_link)
 
     return new_link
+
+
+# List all links
+@app.get("/links", response_model=list[schemas.LinkOut])
+def get_links(db: Session = Depends(get_db)):
+    links = db.query(models.Link).all()
+    return links
