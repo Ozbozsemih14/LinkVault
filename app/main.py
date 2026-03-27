@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
@@ -48,3 +50,15 @@ def create_link(link: schemas.LinkCreate, db: Session = Depends(get_db)):
 def get_links(db: Session = Depends(get_db)):
     links = db.query(models.Link).all()
     return links
+
+
+# Retrieving a specific link by its ID.
+@app.post("/links/{id}", response_model=schemas.LinkOut)
+def get_link(id: int, db: Session = Depends(get_db)):
+    # Find the FIRST record in the database whose ID matches the ID we sent.
+    link = db.query(models.Link).filter(models.Link.id == id).first()
+
+    # Not found error
+    if not link:
+        raise HTTPException(status_code=404, detail="Link bulunamadı !!!")
+    return link
