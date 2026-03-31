@@ -53,7 +53,7 @@ def get_links(db: Session = Depends(get_db)):
 
 
 # Retrieving a specific link by its ID.
-@app.post("/links/{id}", response_model=schemas.LinkOut)
+@app.get("/links/{id}", response_model=schemas.LinkOut)
 def get_link(id: int, db: Session = Depends(get_db)):
     # Find the FIRST record in the database whose ID matches the ID we sent.
     link = db.query(models.Link).filter(models.Link.id == id).first()
@@ -65,7 +65,7 @@ def get_link(id: int, db: Session = Depends(get_db)):
 
 
 # A link delete
-@app.delete(f"/links/{id}")
+@app.delete("/links/{id}")
 def delete_link(id: int, db: Session = Depends(get_db)):
     # Step 1: First, find this link in the database.
     link = db.query(models.Link).filter(models.Link.id == id).first()
