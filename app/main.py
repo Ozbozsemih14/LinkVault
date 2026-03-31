@@ -62,3 +62,24 @@ def get_link(id: int, db: Session = Depends(get_db)):
     if not link:
         raise HTTPException(status_code=404, detail="Link bulunamadı !!!")
     return link
+
+
+# A link delete
+@app.delete(f"/links/{id}")
+def delete_link(id: int, db: Session = Depends(get_db)):
+    # Step 1: First, find this link in the database.
+    link = db.query(models.Link).filter(models.Link.id == id).first()
+
+    # Step 2:İf link is not (none), HTTPException throw.(404)
+    if not link:
+        print("HTTP 404 ")
+        raise HTTPException(status_code=404, detail="Silecek bir şey bulamadım!")
+
+    # Step 3:If a link exists, issue the command to delete it from the database.
+    db.delete(link)
+
+    # Step 4:Commit the change at database.
+    db.commit()
+
+    # Step 5:Return the massage
+    return {"message": f"{id} numaralı link başarıyla uçtu!"}
