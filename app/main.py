@@ -1,6 +1,9 @@
+import os
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
 from . import database, models, schemas
@@ -10,6 +13,9 @@ from . import database, models, schemas
 models.Base.metadata.create_all(bind=database.engine)
 # fastAPI app starting
 app = FastAPI(title="LinkVault API")
+
+# static folder
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 # Database connection
@@ -21,10 +27,10 @@ def get_db():
         db.close()
 
 
-# Homapage (Root) test
+#  Updated Homapage (Root) test
 @app.get("/")
 def read_root():
-    return {"status": "Sistem Hazır", "message": "Veritabanı bağlantısı kuruldu!"}
+    return FileResponse("static/index.html")
 
 
 # Create a new link

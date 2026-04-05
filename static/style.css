@@ -1,0 +1,16 @@
+body{
+    background: radial-gradient(circle at top right, #1a202c,#0f172a);
+}
+.link-card {
+    transition: all 0.3 ease;
+    border: 1px solid rgba(255 , 255, 255,0.1);
+
+}
+.link-card:hover {
+    transform: translateY(-3px);
+    border-color: #3b82f6;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+button:active{
+    transform: scale(0.98);
+}
