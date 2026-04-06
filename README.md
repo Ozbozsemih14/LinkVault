@@ -1,9 +1,9 @@
 # 🛡️ LinkVault Project
 
-Kullanıcıların internet üzerindeki değerli bağlantılarını (makaleler,videolar) güvenli bir şekilde saklamasını,etiketlemesini ve kategorize etmesini sağlayan modern bir Backend hizmeti.
+LinkVault, internet üzerindeki değerli kaynaklarınızı (makale, video, repo vb.) kaybolmadan, şık bir arayüzle ve güvenli bir şekilde saklamanız için geliştirilmiş bir Full-Stack web uygulamasıdır.
 
 ## 📝 Proje Açıklaması
-Bu proje, bir backend geliştiricisinin bilmesi gereken temel ve orta seviye konseptleri (Database, Auth, Caching, Docker) kapsayan bir "öğrenme ve uygulama" projesidir.
+FastAPI ve Tailwind CSS ile geliştirilmiş, asenkron çalışan modern bir link yönetim ve arşivleme uygulaması.
 
 **Hedef Kazanımlar:**
 -FastAPI ile asenkron API geliştirme.
@@ -17,6 +17,7 @@ Bu proje, bir backend geliştiricisinin bilmesi gereken temel ve orta seviye kon
 ## 🛠️ Tech Stack
 **Framework:** FastAPI
 **Language:** Python 3.10+
+**Frontend:** HTML5,Tailwind CSS,JavaScript
 **Database:** PostgreSQL (Ana Veri),Redis (Cache)
 **ORM:** SQLAchemy
 **Container:** Docker & Docker Compose 
