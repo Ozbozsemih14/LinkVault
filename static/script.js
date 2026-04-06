@@ -1,13 +1,12 @@
-// 1. Sayfa yüklendiğinde linkleri getir
+// 1. links fetch when page loads
 document.addEventListener("DOMContentLoaded", () => {
     fetchLinks();
 });
 
-// 2. LİSTEYİ GETİRME FONKSİYONU
+// 2. Fetch list function
 async function fetchLinks() {
     try {
         const response = await fetch('/links');
-        // Eğer cevap JSON değilse burada patlamasın diye kontrol ekleyelim
         if (!response.ok) throw new Error('Backend cevap vermiyor');
         
         const links = await response.json();
@@ -21,7 +20,7 @@ async function fetchLinks() {
         }
 
         links.forEach(link => {
-            // BURAYA DİKKAT: En baştaki ve en sondaki işaret ` (backtick) olmalı!
+            
             listContainer.innerHTML += `
             <div class="bg-gray-800 p-4 rounded-xl flex justify-between items-center border border-gray-700 hover:border-blue-500 transition duration-300 shadow-md mb-3">
                 <div class="flex flex-col text-left">
@@ -40,7 +39,7 @@ async function fetchLinks() {
     }
 }
 
-// 3. LİNK EKLEME FONKSİYONU (Butona basınca çalışacak olan)
+// 3. Link adding function
 async function addLink() {
     const title = document.getElementById('titleInput').value;
     const url = document.getElementById('urlInput').value;
@@ -63,7 +62,7 @@ async function addLink() {
     }
 }
 
-// 4. SİLME FONKSİYONU
+// 4. Delete function
 async function deleteLink(id) {
     if (confirm("Siliyorum, emin misin?")) {
         const response = await fetch(`/links/${id}`, { method: 'DELETE' });
