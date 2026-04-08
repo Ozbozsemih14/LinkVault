@@ -18,14 +18,21 @@ async function fetchLinks() {
             listContainer.innerHTML = '<p class="text-center text-gray-500">Henüz hiç link eklenmemiş</p>';
             return;
         }
+        function escapeHTML(str){
+            const p = document.createElement('p');
+            p.textContent=str;
+            return p.innerHTML;
+        }
 
         links.forEach(link => {
+            const safeTitle =escapeHTML(link.title);
+            const safeUrl =escapeHTML(link.url);
             
             listContainer.innerHTML += `
             <div class="bg-gray-800 p-4 rounded-xl flex justify-between items-center border border-gray-700 hover:border-blue-500 transition duration-300 shadow-md mb-3">
                 <div class="flex flex-col text-left">
-                    <h3 class="text-lg font-bold text-white">${link.title}</h3>
-                    <a href="${link.url}" target="_blank" class="text-blue-400 text-sm hover:underline">${link.url}</a>
+                    <h3 class="text-lg font-bold text-white">${safeTitle}</h3>
+                    <a href="${safeUrl.startsWith('http') ? safeUrl : '#'}" target="_blank" class="text-blue-400 text-sm hover:underline">${link.url}</a>
                 </div>
                 <button onclick="deleteLink(${link.id})" class="text-gray-500 hover:text-red-500 transition p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
