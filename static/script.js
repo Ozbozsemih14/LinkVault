@@ -44,8 +44,16 @@ async function addLink() {
     const title = document.getElementById('titleInput').value;
     const url = document.getElementById('urlInput').value;
 
-    if (!title || !url) {
-        alert("Boş bırakma kanka!");
+    if (!title.trim() ) {
+        alert("Lütfen başlık giriniz!");
+        return;
+    } 
+    if (!url.trim()){
+        alert("Lütfen geçerli bir url giriniz!");
+        return;
+    } 
+    if (!url.startsWith('http')) {
+        alert("URL 'http' veya 'https' ile başlamalıdır! ");
         return;
     }
 
@@ -61,6 +69,12 @@ async function addLink() {
         fetchLinks(); // Listeyi tazele
     }
 }
+
+document.getElementById('urlInput').addEventListener('keypress',function(e){
+    if (e.key ==='Enter'){
+        addLink();
+    }
+});
 
 // 4. Delete function
 async function deleteLink(id) {
