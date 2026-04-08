@@ -56,7 +56,7 @@ async function addLink() {
         alert("URL 'http' veya 'https' ile başlamalıdır! ");
         return;
     }
-
+ try {
     const response = await fetch('/links', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -67,7 +67,13 @@ async function addLink() {
         document.getElementById('titleInput').value = '';
         document.getElementById('urlInput').value = '';
         fetchLinks(); // Listeyi tazele
+    } else {
+        alert("Link eklenemedi hata oluştu.");
     }
+} catch (error){
+    alert("Sunucuya ulaşılmadı!");
+    console.error(error);
+}
 }
 
 document.getElementById('urlInput').addEventListener('keypress',function(e){
@@ -75,6 +81,11 @@ document.getElementById('urlInput').addEventListener('keypress',function(e){
         addLink();
     }
 });
+document.getElementById('titleInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {                                                                         
+          addLink();
+      }                                                                                                
+  });        
 
 // 4. Delete function
 async function deleteLink(id) {
